@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a10">
+<meta name="description" content="پالس گیمینگ — آخرین اخبار، نقدها و تحلیل‌های دنیای بازی">
+<meta name="author" content="Aria Azizi">
+<title>پالس گیمینگ | اخبار، نقد و تحلیل</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════
+     پس‌زمینه‌های شناور (Liquid Blobs)
+═══════════════════════════════════ -->
+<div class="bg-scene" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+</div>
+
+<!-- نوار پیشرفت اسکرول -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ═══════════════════════════════════
+     هدر شناور شیشه‌ای
+═══════════════════════════════════ -->
+<header class="nav-shell" id="navShell">
+    <div class="nav-glass">
+        <a href="#" class="brand" aria-label="صفحه اصلی">
+            <span class="brand-mark">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2 L4 7 L4 17 L12 22 L20 17 L20 7 Z"/>
+                    <path d="M12 2 L12 22"/>
+                    <path d="M4 7 L20 17"/>
+                    <path d="M20 7 L4 17"/>
+                </svg>
+            </span>
+            <span class="brand-text">
+                <strong>پالس</strong>
+                <small>GAMING PULSE</small>
+            </span>
+        </a>
+
+        <nav class="nav-links" aria-label="منوی اصلی">
+            <a href="#news" class="nav-link active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h12"/></svg>
+                اخبار
+            </a>
+            <a href="#reviews" class="nav-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9 16 14 18 22 12 17 6 22 8 14 2 9 9 9 12 2"/></svg>
+                نقدها
+            </a>
+            <a href="#videos" class="nav-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                ویدیو
+            </a>
+            <a href="#guides" class="nav-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                راهنما
+            </a>
+            <a href="#esports" class="nav-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                ای‌اسپورت
+            </a>
+        </nav>
+
+        <div class="nav-actions">
+            <button class="icon-btn" id="searchBtn" aria-label="جستجو">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </button>
+            <button class="icon-btn theme-btn" id="themeBtn" aria-label="تغییر تم">
+                <span class="sun">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+                </span>
+                <span class="moon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+                </span>
+            </button>
+            <button class="icon-btn menu-btn" id="menuBtn" aria-label="منو">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- ═══════════════════════════════════
+     هیرو سکشن — خبر ویژه
+═══════════════════════════════════ -->
+<section class="hero" id="hero">
+    <div class="container">
+
+        <div class="hero-meta">
+            <span class="live-badge">
+                <span class="live-dot"></span>
+                LIVE
+            </span>
+            <span class="hero-date" id="heroDate"></span>
+        </div>
+
+        <article class="hero-card glass">
+            <div class="hero-tag">
+                <span class="tag-hot">🔥 داغ</span>
+                <span class="tag-cat">اکشن</span>
+            </div>
+
+            <h1 class="hero-title">
+                <span class="line">بزرگ‌ترین</span>
+                <span class="line">رونمایی</span>
+                <span class="line highlight">سال ۲۰۲۵</span>
+            </h1>
+
+            <p class="hero-excerpt">
+                جدیدترین تریلر بازی <strong>Eclipse Protocol</strong> با گرافیک نسل نهم و موتور بازی‌سازی اختصاصی، استاندارد جدیدی برای ژانر اکشن-ماجراجویی تعریف کرده است.
+            </p>
+
+            <div class="hero-footer">
+                <div class="hero-author">
+                    <div class="avatar avatar-1"></div>
+                    <div>
+                        <strong>آریا عزیزی</strong>
+                        <small>۳ ساعت پیش · ۵ دقیقه مطالعه</small>
+                    </div>
+                </div>
+                <a href="#" class="btn-primary">
+                    <span>خواندن خبر</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </a>
+            </div>
+
+            <div class="hero-shine" aria-hidden="true"></div>
+        </article>
+
+        <div class="trending-bar">
+            <span class="trending-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                پرطرفدار
+            </span>
+            <div class="trending-list">
+                <a href="#" class="trend-item"><span>۱</span>پلی‌استیشن ۶ چه زمانی معرفی می‌شود؟</a>
+                <a href="#" class="trend-item"><span>۲</span>نقد کامل Hollow Knight: Silksong</a>
+                <a href="#" class="trend-item"><span>۳</span>۱۰ بازی برتر سال از نگاه کاربران</a>
+                <a href="#" class="trend-item"><span>۴</span>آپدیت بزرگ Baldur's Gate 3</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     بخش اصلی: اخبار + سایدبار
+═══════════════════════════════════ -->
+<section class="main-grid" id="news">
+    <div class="container main-inner">
+
+        <!-- ═══ اخبار ═══ -->
+        <div class="content-col">
+
+            <div class="section-head">
+                <div>
+                    <h2 class="section-title">آخرین اخبار</h2>
+                    <p class="section-sub">جدیدترین رویدادهای دنیای گیمینگ</p>
+                </div>
+
+                <div class="filter-tabs" id="filterTabs">
+                    <button class="tab active" data-cat="all">همه</button>
+                    <button class="tab" data-cat="action">اکشن</button>
+                    <button class="tab" data-cat="rpg">RPG</button>
+                    <button class="tab" data-cat="indie">ایندی</button>
+                    <button class="tab" data-cat="tech">تکنولوژی</button>
+                </div>
+            </div>
+
+            <div class="news-grid" id="newsGrid">
+
+                <article class="news-card glass" data-cat="rpg">
+                    <div class="news-thumb thumb-1">
+                        <span class="thumb-badge">RPG</span>
+                    </div>
+                    <div class="news-body">
+                        <h3>The Witcher 4 در مرحله نهایی تولید</h3>
+                        <p>استودیو CD Projekt Red تأیید کرد که بازی در مرحله پایانی پولیش قرار دارد.</p>
+                        <div class="news-meta">
+                            <span>۵ ساعت پیش</span>
+                            <span class="dot"></span>
+                            <span>۴ دقیقه</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card glass" data-cat="tech">
+                    <div class="news-thumb thumb-2">
+                        <span class="thumb-badge">Tech</span>
+                    </div>
+                    <div class="news-body">
+                        <h3>کارت گرافیک‌های نسل جدید RTX 50</h3>
+                        <p>انویدیا از معماری Blackwell با پشتیبانی کامل از رهگیری پرتو نسل پنجم رونمایی کرد.</p>
+                        <div class="news-meta">
+                            <span>۷ ساعت پیش</span>
+                            <span class="dot"></span>
+                            <span>۳ دقیقه</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card glass" data-cat="indie">
+                    <div class="news-thumb thumb-3">
+                        <span class="thumb-badge">Indie</span>
+                    </div>
+                    <div class="news-body">
+                        <h3>پدیده ایندی سال معرفی شد</h3>
+                        <p>بازی Animal Well با فروش بیش از ۲ میلیون نسخه، رکورد جدیدی ثبت کرد.</p>
+                        <div class="news-meta">
+                            <span>۹ ساعت پیش</span>
+                            <span class="dot"></span>
+                            <span>۲ دقیقه</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card glass" data-cat="action">
+                    <div class="news-thumb thumb-4">
+                        <span class="thumb-badge">Action</span>
+                    </div>
+                    <div class="news-body">
+                        <h3>تریلر جدید GTA VI منتشر شد</h3>
+                        <p>راک‌استار گیمز تریلر سینمایی جدیدی با نمایش گیم‌پلی منتشر کرد.</p>
+                        <div class="news-meta">
+                            <span>۱۲ ساعت پیش</span>
+                            <span class="dot"></span>
+                            <span>۶ دقیقه</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card glass" data-cat="rpg">
+                    <div class="news-thumb thumb-5">
+                        <span class="thumb-badge">RPG</span>
+                    </div>
+                    <div class="news-body">
+                        <h3>Persona 6 در راه است؟</h3>
+                        <p>اطلاعات لو رفته از آتلوس، از توسعه نسخه جدید این فرنچایز محبوب خبر می‌دهد.</p>
+                        <div class="news-meta">
+                            <span>۱۴ ساعت پیش</span>
+                            <span class="dot"></span>
+                            <span>۵ دقیقه</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card glass" data-cat="tech">
+                    <div class="news-thumb thumb-6">
+                        <span class="thumb-badge">Tech</span>
+                    </div>
+                    <div class="news-body">
+                        <h3>Unreal Engine 6 رونمایی شد</h3>
+                        <p>اپیک گیمز از موتور جدید خود با قابلیت رندر بی‌درنگ جهانی رونمایی کرد.</p>
+                        <div class="news-meta">
+                            <span>۱۶ ساعت پیش</span>
+                            <span class="dot"></span>
+                            <span>۷ دقیقه</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <button class="load-more" id="loadMore">
+                <span>مشاهده اخبار بیشتر</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+            </button>
+
+        </div>
+
+        <!-- ═══ سایدبار ═══ -->
+        <aside class="side-col">
+
+            <div class="pulse-card glass">
+                <div class="pulse-head">
+                    <span class="pulse-icon">⚡</span>
+                    <div>
+                        <h3>پالس زنده</h3>
+                        <small>آخرین به‌روزرسانی‌ها</small>
+                    </div>
+                </div>
+
+                <div class="pulse-list" id="pulseList">
+                    <a href="#" class="pulse-item">
+                        <span class="pulse-time">۲ دقیقه پیش</span>
+                        <span class="pulse-text">تریلر جدید Cyberpunk 2 منتشر شد</span>
+                    </a>
+                    <a href="#" class="pulse-item">
+                        <span class="pulse-time">۸ دقیقه پیش</span>
+                        <span class="pulse-text">آپدیت ۲.۱ بازی Elden Ring در دسترس قرار گرفت</span>
+                    </a>
+                    <a href="#" class="pulse-item">
+                        <span class="pulse-time">۲۳ دقیقه پیش</span>
+                        <span class="pulse-text">کنفرانس Xbox Showcase تاریخ‌گذاری شد</span>
+                    </a>
+                    <a href="#" class="pulse-item">
+                        <span class="pulse-time">۴۵ دقیقه پیش</span>
+                        <span class="pulse-text">نسخه ریمستر Silent Hill 2 معرفی شد</span>
+                    </a>
+                    <a href="#" class="pulse-item">
+                        <span class="pulse-time">۱ ساعت پیش</span>
+                        <span class="pulse-text">جدیدترین آمار فروش PS5 منتشر شد</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="score-card glass">
+                <div class="score-head">
+                    <span>محبوب‌ترین این هفته</span>
+                </div>
+                <ol class="score-list">
+                    <li>
+                        <span class="rank rank-1">۱</span>
+                        <span class="score-name">Eclipse Protocol</span>
+                        <span class="score-badge s-green">۹.۵</span>
+                    </li>
+                    <li>
+                        <span class="rank rank-2">۲</span>
+                        <span class="score-name">Hollow Knight: Silksong</span>
+                        <span class="score-badge s-green">۹.۳</span>
+                    </li>
+                    <li>
+                        <span class="rank rank-3">۳</span>
+                        <span class="score-name">Metaphor: ReFantazio</span>
+                        <span class="score-badge s-green">۹.۱</span>
+                    </li>
+                    <li>
+                        <span class="rank">۴</span>
+                        <span class="score-name">Animal Well</span>
+                        <span class="score-badge s-yellow">۸.۸</span>
+                    </li>
+                    <li>
+                        <span class="rank">۵</span>
+                        <span class="score-name">Stellar Blade</span>
+                        <span class="score-badge s-yellow">۸.۵</span>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="newsletter-card glass">
+                <div class="newsletter-icon">📬</div>
+                <h3>خبرنامه گیمینگ</h3>
+                <p>هفته‌ای یک ایمیل، مهم‌ترین اخبار و تحلیل‌ها</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="ایمیل شما" required>
+                    <button type="submit">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                </form>
+            </div>
+
+        </aside>
+
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     بخش نقدها
+═══════════════════════════════════ -->
+<section class="reviews" id="reviews">
+    <div class="container">
+
+        <div class="section-head centered">
+            <div>
+                <h2 class="section-title">نقد و بررسی</h2>
+                <p class="section-sub">تحلیل عمیق از تیم تخصصی</p>
+            </div>
+        </div>
+
+        <div class="reviews-grid">
+
+            <article class="review-card glass">
+                <div class="review-cover cover-1">
+                    <span class="review-score s-green">۹.۵</span>
+                </div>
+                <div class="review-body">
+                    <span class="review-cat">اکشن-ماجراجویی</span>
+                    <h3>Eclipse Protocol</h3>
+                    <p>یک شاهکار سینمایی که مرزهای گیم‌پلی روایی را جابجا می‌کند.</p>
+                    <div class="review-footer">
+                        <span>PS5 · XSX · PC</span>
+                        <span>۱۴ آذر ۱۴۰۳</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="review-card glass">
+                <div class="review-cover cover-2">
+                    <span class="review-score s-green">۹.۳</span>
+                </div>
+                <div class="review-body">
+                    <span class="review-cat">مترویدوانیا</span>
+                    <h3>Hollow Knight: Silksong</h3>
+                    <p>پس از سال‌ها انتظار، Team Cherry وعده‌اش را با اثری بی‌نقص ادا کرد.</p>
+                    <div class="review-footer">
+                        <span>Switch · PC · PS5</span>
+                        <span>۸ آذر ۱۴۰۳</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="review-card glass">
+                <div class="review-cover cover-3">
+                    <span class="review-score s-yellow">۸.۸</span>
+                </div>
+                <div class="review-body">
+                    <span class="review-cat">نقش‌آفرینی</span>
+                    <h3>Metaphor: ReFantazio</h3>
+                    <p>Atlus بار دیگر ثابت کرد که در ساخت JRPG حرف اول را می‌زند.</p>
+                    <div class="review-footer">
+                        <span>PS5 · XSX · PC</span>
+                        <span>۲ آذر ۱۴۰۳</span>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     بخش ویدیو + ای‌اسپورت
+═══════════════════════════════════ -->
+<section class="split-section" id="videos">
+    <div class="container">
+
+        <div class="split-card glass">
+            <div class="split-icon">🎬</div>
+            <h3>گالری ویدیو</h3>
+            <p>جدیدترین تریلرها، گیم‌پلی‌ها و تحلیل‌های ویدیویی</p>
+            <a href="#" class="split-link">
+                ورود به گالری
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            </a>
+        </div>
+
+        <div class="split-card glass" id="esports">
+            <div class="split-icon">🏆</div>
+            <h3>ای‌اسپورت</h3>
+            <p>پوشش زنده مسابقات، نتایج و تحلیل‌های تخصصی</p>
+            <a href="#" class="split-link">
+                مشاهده مسابقات
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            </a>
+        </div>
+
+        <div class="split-card glass" id="guides">
+            <div class="split-icon">📖</div>
+            <h3>راهنماها</h3>
+            <p>نکات، ترفندها و راهنمای کامل تمام بازی‌های محبوب</p>
+            <a href="#" class="split-link">
+                مشاهده راهنماها
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     بخش CTA نهایی
+═══════════════════════════════════ -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-card glass">
+            <span class="cta-badge">همراه ما شو</span>
+            <h2 class="cta-title">
+                <span class="grad-text">دنیای گیمینگ</span>
+                <br>
+                در یک نگاه
+            </h2>
+            <p class="cta-sub">عضویت در خبرنامه برای دریافت مهم‌ترین اخبار هفته</p>
+            <div class="cta-actions">
+                <a href="#" class="btn-primary big">
+                    <span>عضویت رایگان</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </a>
+                <a href="#" class="btn-ghost">درباره ما</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     فوتر
+═══════════════════════════════════ -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+
+            <div class="footer-col">
+                <div class="brand">
+                    <span class="brand-mark">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2 L4 7 L4 17 L12 22 L20 17 L20 7 Z"/>
+                            <path d="M12 2 L12 22"/>
+                            <path d="M4 7 L20 17"/>
+                            <path d="M20 7 L4 17"/>
+                        </svg>
+                    </span>
+                    <span class="brand-text">
+                        <strong>پالس</strong>
+                        <small>GAMING PULSE</small>
+                    </span>
+                </div>
+                <p class="footer-about">
+                    مرجع فارسی‌زبان اخبار، نقد و تحلیل بازی‌های ویدیویی و دنیای گیمینگ.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>بخش‌ها</h4>
+                <ul>
+                    <li><a href="#">اخبار</a></li>
+                    <li><a href="#">نقد و بررسی</a></li>
+                    <li><a href="#">ویدیو</a></li>
+                    <li><a href="#">راهنماها</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>درباره</h4>
+                <ul>
+                    <li><a href="#">تیم ما</a></li>
+                    <li><a href="#">تماس با ما</a></li>
+                    <li><a href="#">همکاری با ما</a></li>
+                    <li><a href="#">حریم خصوصی</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>ما را دنبال کنید</h4>
+                <div class="social-row">
+                    <a href="#" aria-label="تلگرام">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 2.4 11.7c-1.3.5-1.3 1.3-.2 1.6l5 1.5 1.9 5.9c.3.7.5.8 1.2.3l2.9-2.1 5.9 4.4c1.1.6 1.9.3 2.1-1l3.6-17c.3-1.2-.5-1.8-1.4-1.4z"/></svg>
+                    </a>
+                    <a href="#" aria-label="توییتر">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.9l-5.4-7-6.2 7H1.4l8.1-9.3L1 2h7l4.9 6.4L18.9 2zm-1.1 18h1.8L7.3 4H5.4l12.4 16z"/></svg>
+                    </a>
+                    <a href="#" aria-label="اینستاگرام">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1.2" fill="currentColor"/></svg>
+                    </a>
+                    <a href="#" aria-label="یوتیوب">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.9-.5-5.7c-.3-1-1.1-1.8-2.1-2.1C18.6 3.7 12 3.7 12 3.7s-6.6 0-8.4.5c-1 .3-1.8 1.1-2.1 2.1C1 8.1 1 12 1 12s0 3.9.5 5.7c.3 1 1.1 1.8 2.1 2.1 1.8.5 8.4.5 8.4.5s6.6 0 8.4-.5c1-.3 1.8-1.1 2.1-2.1.5-1.8.5-5.7.5-5.7zM9.7 15.5v-7l6.2 3.5-6.2 3.5z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© ۱۴۰۴ پالس گیمینگ — تمام حقوق محفوظ است.</p>
+            <p class="footer-credit">
+                ساخته شده با <span class="heart">♥</span> توسط <strong>آریا عزیزی</strong>
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- ═══════════════════════════════════
+     دکمه بازگشت به بالا
+═══════════════════════════════════ -->
+<button class="to-top" id="toTop" aria-label="بازگشت به بالا">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<!-- ═══════════════════════════════════
+     پنل جستجو (Overlay)
+═══════════════════════════════════ -->
+<div class="search-overlay" id="searchOverlay" hidden>
+    <div class="search-backdrop" id="searchBackdrop"></div>
+    <div class="search-panel glass">
+        <button class="search-close" id="searchClose" aria-label="بستن">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+        <div class="search-input-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" id="searchInput" placeholder="جستجو در اخبار، نقدها و راهنماها..." autocomplete="off">
+        </div>
+        <div class="search-suggest" id="searchSuggest">
+            <span class="suggest-label">پیشنهادهای پرطرفدار</span>
+            <div class="suggest-chips">
+                <button class="chip">Eclipse Protocol</button>
+                <button class="chip">Elden Ring</button>
+                <button class="chip">GTA VI</button>
+                <button class="chip">PS5 Pro</button>
+                <button class="chip">Nintendo Switch 2</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     پنل تنظیمات کاربر
+═══════════════════════════════════ -->
+<button class="settings-fab" id="settingsFab" aria-label="تنظیمات">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+</button>
+
+<aside class="settings-panel" id="settingsPanel" aria-label="تنظیمات">
+    <div class="settings-head">
+        <h3>تنظیمات</h3>
+        <button class="icon-btn" id="settingsClose" aria-label="بستن">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+    </div>
+
+    <div class="settings-body">
+        <div class="setting-group">
+            <label class="setting-label">حالت نمایش</label>
+            <div class="theme-switch" id="themeSwitch">
+                <button class="theme-opt" data-theme="light">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+                    روز
+                </button>
+                <button class="theme-opt active" data-theme="dark">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+                    شب
+                </button>
+            </div>
+        </div>
+
+        <div class="setting-group">
+            <label class="setting-label">اندازه فونت</label>
+            <input type="range" id="fontSize" min="90" max="120" step="5" value="100">
+            <div class="range-val" id="fontSizeVal">۱۰۰٪</div>
+        </div>
+
+        <div class="setting-group">
+            <label class="setting-label">سطح افکت‌ها</label>
+            <div class="perf-switch" id="perfSwitch">
+                <button class="perf-opt" data-perf="low">ساده</button>
+                <button class="perf-opt" data-perf="mid">متوسط</button>
+                <button class="perf-opt active" data-perf="high">کامل</button>
+            </div>
+        </div>
+
+        <div class="setting-group">
+            <label class="setting-label">افکت‌ها</label>
+            <div class="toggle-row">
+                <span>بلور شیشه‌ای</span>
+                <button class="switch active" data-fx="blur" aria-label="بلور"></button>
+            </div>
+            <div class="toggle-row">
+                <span>انیمیشن پس‌زمینه</span>
+                <button class="switch active" data-fx="blobs" aria-label="انیمیشن"></button>
+            </div>
+            <div class="toggle-row">
+                <span>افکت اسکرول</span>
+                <button class="switch active" data-fx="scroll" aria-label="اسکرول"></button>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- ═══════════════════════════════════
+     CDN ها
+═══════════════════════════════════ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script src="script.js"></script>
+</body>
+  </html>
